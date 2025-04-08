@@ -16,7 +16,7 @@ resource "aws_ecs_service" "service" {
   network_configuration {
     assign_public_ip = true
     security_groups  = [aws_security_group.sg.id]
-    subnets          = [aws_subnet.sn1.id, aws_subnet.sn2.id, aws_subnet.sn3.id]
+    subnets          = [aws_subnet.sn1.id, aws_subnet.sn2.id]
   }
 }
 
@@ -24,7 +24,7 @@ resource "aws_ecs_task_definition" "td" {
   container_definitions = jsonencode([
     {
       name         = "app"
-      image        = "***.dkr.ecr.us-east-2.amazonaws.com/app_repo"
+      image        = "424567178047.dkr.ecr.us-east-1.amazonaws.com/app_repo"
       cpu          = 256
       memory       = 512
       essential    = true
@@ -42,6 +42,6 @@ resource "aws_ecs_task_definition" "td" {
   cpu                = "256"
   memory             = "512"
   network_mode       = "awsvpc"
-  task_role_arn      = "arn:aws:iam::***:role/ecsTaskExecutionRole"
-  execution_role_arn = "arn:aws:iam::***:role/ecsTaskExecutionRole"
+  task_role_arn      = "arn:aws:iam::424567178047:role/ecsTaskExecutionRole"
+  execution_role_arn = "arn:aws:iam::424567178047:role/ecsTaskExecutionRole"
 }
